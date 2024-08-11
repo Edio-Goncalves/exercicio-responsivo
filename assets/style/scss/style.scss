@@ -1,4 +1,261 @@
+@use "forward" as fw;
+
+// Global Styles
 * {
-  margin: 0;
   box-sizing: border-box;
+  font-family: fw.$font-family;
+  margin: 0;
+  padding: 0;
+}
+
+.bk-ground {
+  background-color: aquamarine;
+  min-height: fw.$header-height;
+  background-image: url("/assets/image/header.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  position: relative;
+  .bg-gradient {
+    min-height: 300px;
+    width: 100%;
+    background: linear-gradient(
+      to bottom,
+      fw.$gradient-start 0%,
+      fw.$gradient-end 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0);
+  }
+}
+
+// Header Styles
+header {
+  position: relative;
+  min-height: fw.$header-height;
+  max-width: fw.$max-width;
+  margin: auto;
+
+  .header-border {
+    display: flex;
+    align-items: center;
+    border-bottom: rgba(255, 255, 255, 0.25) 1px solid;
+  }
+
+  #logo {
+    width: 200px;
+    color: #fff;
+    line-height: 60px;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: #000 1px 1px 8px;
+  }
+}
+
+// Menu Styles
+.menu {
+  flex: 1;
+
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    min-width: 100px;
+    line-height: 28px;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: fw.$padding-20;
+  }
+
+  .open-menu {
+    display: none;
+  }
+
+  .close-menu {
+    display: none;
+  }
+}
+
+// Register Form Styles
+#register {
+  background-color: #fff;
+  width: 100%;
+  height: 400px;
+  max-width: 350px;
+  position: absolute;
+  bottom: 18px;
+  right: 30px;
+  box-shadow: fw.$box-shadow;
+  border-radius: fw.$border-radius;
+  padding: fw.$padding-20;
+  color: fw.$text-color;
+
+  p {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 35px;
+  }
+
+  .field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    border: #ccc 1px solid;
+
+    &[type="radio"] {
+      width: 25px;
+    }
+  }
+
+  button {
+    width: 100%;
+    border: none;
+    background-color: fw.$primary-color;
+    color: #fff;
+    padding: 0.75rem;
+    font-size: 1.2em;
+  }
+}
+
+// Container Styles
+.container {
+  max-width: fw.$max-width;
+  margin: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+// Title Styles
+.title h1 {
+  font-size: 3em;
+  border-bottom: #ccc 1px solid;
+  padding: 1rem 0px;
+}
+
+// Home Styles
+.home p {
+  text-align: justify;
+  margin: 20px 0px;
+}
+
+// Footer Styles
+footer {
+  background-color: fw.$background-color;
+  color: fw.$light-text-color;
+  font-size: 0.8em;
+  padding: 20px 0px;
+
+  p {
+    line-height: 30px;
+  }
+
+  .container {
+    display: flex;
+  }
+
+  .menu a {
+    color: fw.$light-text-color;
+  }
+}
+
+// Backdrop Styles
+.backdrop {
+  display: none;
+}
+
+// Responsive Styles
+@media (max-width: fw.$breakpoint-mobile) {
+  .menu {
+    width: 60px;
+    flex: initial;
+
+    .close-menu {
+      display: block;
+      text-align: right;
+      background-color: #eee;
+
+      button {
+        background: none;
+        border: none;
+        font-size: 2em;
+        padding: 0.75rem 1rem;
+      }
+    }
+
+    .open-menu {
+      display: block;
+      font-size: 2em;
+      padding: 0.9rem;
+      flex: 1;
+      background: none;
+      border: none;
+      color: #fff;
+    }
+
+    ul {
+      display: block;
+      position: fixed;
+      top: 0;
+      right: -80vw;
+      width: 80vw;
+      height: 100vh;
+      background-color: #fff;
+      z-index: 2;
+      margin: 0;
+      transition: right 0.2s linear;
+
+      &.open {
+        right: 0;
+      }
+
+      a {
+        color: #000;
+        padding: fw.$padding-20;
+        display: block;
+        font-weight: 100;
+        border-bottom: #ccc 1px solid;
+      }
+    }
+
+    .backdrop {
+      opacity: 0;
+      background-color: #000;
+      transition: 0.15s linear;
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      z-index: 1;
+      left: 0;
+      top: 0;
+
+      &.open {
+        opacity: 0.5;
+        display: block;
+      }
+    }
+  }
+
+  header .header-border {
+    justify-content: space-between;
+  }
+
+  #register {
+    width: 90%;
+    margin: 0 5%;
+    max-width: initial;
+    right: initial;
+  }
 }
